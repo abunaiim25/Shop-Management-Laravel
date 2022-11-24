@@ -71,7 +71,7 @@ Admin - Invoice
 
                     <div style="display: flex; justify-content: space-between;" class="mb-2">
                         <h6 class="card-body-title">Invoice/Bill List</h6>
-                        <a href="{{url('/admin_add_invoice')}}" class=" btn btn-info mg-r-5">+ Add Invoice</a>
+                        <a href="{{url('/admin_add_invoice')}}" class=" btn btn-info btn-rounded">+ Add Invoice</a>
                     </div>
 
                     <div class="table-wrapper" style="overflow: auto">
@@ -81,8 +81,9 @@ Admin - Invoice
                                     <tr>
                                         <th>Sl</th>
                                         <th>Date</th>
-                                        <th>Customer Name</th>
                                         <th>Invoice No.</th>
+                                        <th>Customer Name</th>
+                                        <th>Number</th>
                                         <th>Selling Amount</th>
                                         <th>Action</th>
                                     </tr>
@@ -97,8 +98,9 @@ Admin - Invoice
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->date}}</td>
-                                        <td>{{ $item->name }}</td>
                                         <td>{{ $item->invoice_no }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->phone }}</td>
                                         <td>{{$item->subtotal}} TK</td>
                                         <td>
                                             <a href="{{ url('admin_seen_invoicebill/'. $item->id) }}"

@@ -71,7 +71,8 @@ Admin - Godown Stock
 
                     <div style="display: flex; justify-content: space-between;" class="mb-2">
                         <h6 class="card-body-title">Godown Stoke Product List</h6>
-                        <a href="{{url('/admin_add_godown_stoke')}}" class=" btn btn-info mg-r-5">+ Add Godown Stock</a>
+                        <a href="{{url('/admin_add_godown_stoke')}}" class=" btn btn-info btn-rounded">+ Add Godown
+                            Stock</a>
                     </div>
                     @if ($stock->count() > 0)
                     <div class="table-wrapper" style="overflow: auto">

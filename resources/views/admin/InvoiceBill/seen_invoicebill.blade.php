@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin - Invoice</title>
+    <title>{{$invoice->name}}-Invoice</title>
     <link rel="stylesheet" href="style.css">
     <link rel="license" href="https://www.opensource.org/licenses/mit-license/">
 </head>
@@ -10,194 +10,170 @@
 <body>
 
 
-
-    <div id="invoice">
-        <div class="body">
-            <header>
-                <h1>Invoice</h1>
-                <h2 style=" display:flex; justify-content:center; text-transform:uppercase; font-weight: bold;
+    <div class="body">
+        <header>
+            <h1>Invoice</h1>
+            <h2 style=" display:flex; justify-content:center; text-transform:uppercase; font-weight: bold;
             margin-bottom:5px">
-                    Shopno
-                    Enterprise</h2>
-                <p style="display:flex; justify-content:center; font-size:12px;">Address: Lorem ipsum dolor sit
-                    amet
-                    consectetur adipisicing elit. Cupiditate, voluptates.
-                </p>
-                <p style="display:flex; justify-content:center; font-size:12px;">
-                    Service Hot Line: 01812112395, 01812112395. cell: 01812112395</p>
-                <p style="display:flex; justify-content:center; font-size:12px;">Email: naiim@gmail.com,
-                    naiim@gmail.com, naiim@gmail.com
-                </p>
-                <p style="display:flex; justify-content:center; font-size:12px;">Visit: www.shonnoenterprise.com
-                </p>
-            </header>
+                Shopno
+                Enterprise</h2>
+            <p style="display:flex; justify-content:center; font-size:12px;">Address: Lorem ipsum dolor sit
+                amet
+                consectetur adipisicing elit. Cupiditate, voluptates.
+            </p>
+            <p style="display:flex; justify-content:center; font-size:12px;">
+                Service Hot Line: 01812112395, 01812112395. cell: 01812112395</p>
+            <p style="display:flex; justify-content:center; font-size:12px;">Email: naiim@gmail.com,
+                naiim@gmail.com, naiim@gmail.com
+            </p>
+            <p style="display:flex; justify-content:center; font-size:12px;">Visit: www.shonnoenterprise.com
+            </p>
+        </header>
 
-            <article>
-                <div style="display:flex; justify-content:space-between">
+        <article>
+            <div style="display:flex; justify-content:space-between">
 
-                    <table class=" meta">
-                        <tr>
-                            <th>
-                                Customer Name</span>
-                            </th>
-                            <td>{{$invoice->name}}</td>
-                        </tr>
-                        <tr>
-                            <th><span>Customer Person</span></th>
-                            <td>{{$invoice->person}}</td>
-                        </tr>
-                        <tr>
-                            <th><span>Customer Email</span></th>
-                            <td>{{$invoice->email}}</td>
-                        </tr>
-                        <tr>
-                            <th><span>Customer Number</span></th>
-                            <td>{{$invoice->phone}}</td>
-                        </tr>
-                        <tr>
-                            <th><span>Customer Address</span></th>
-                            <td>
-                                {{$invoice->address}}
-                            </td>
-                        </tr>
-                    </table>
-
-                    <table class="meta">
-                        <tr>
-                            <th>Date</th>
-                            <td> {{$invoice->date}}</td>
-                        </tr>
-                        <tr>
-                            <th>Invoice / Bill No</th>
-                            <td>{{$invoice->invoice_no}}</td>
-                        </tr>
-                        <tr>
-                            <th>Ref By</th>
-                            <td> {{$invoice->ref_by}}</td>
-                        </tr>
-                        <tr>
-                            <th>Sold By</th>
-                            <td> {{$invoice->sold_by}}</td>
-                        </tr>
-
-                    </table>
-                </div>
-
-                <table class="inventory">
-                    <thead>
-                        <tr>
-                            <th>Sl.</th>
-                            <th>Product Description</th>
-                            <th>Warranty</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($product as $item)
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{ $item->product_desc }}</td>
-                            <td>{{ $item->warranty }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->product_qty }}</td>
-                            <td>{{ $item->product_qty *  $item->price}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-
-                <div style='float:right'>
-                    <p style='font-size:15px; font-weight:bold'>Grand Total: {{$invoice->subtotal}}TK</p>
-                </div>
-
-                <table class="balance">
+                <table class=" meta">
                     <tr>
-                        <th>Previous Due</th>
-                        <td>{{$invoice->previous_due}} TK</td>
+                        <th>
+                            Customer Name</span>
+                        </th>
+                        <td>{{$invoice->name}}</td>
                     </tr>
                     <tr>
-                        <th>Selling Amount</th>
-                        <td>{{$invoice->subtotal}} TK</td>
+                        <th><span>Customer Person</span></th>
+                        <td>{{$invoice->person}}</td>
                     </tr>
                     <tr>
-                        <th>Collecton</th>
-                        <td>{{$invoice->collecton}} TK</td>
+                        <th><span>Customer Email</span></th>
+                        <td>{{$invoice->email}}</td>
                     </tr>
                     <tr>
-                        <th>Net Oustanding</th>
-                        <td>{{$invoice->previous_due + $invoice->subtotal - $invoice->collecton}} TK</td>
+                        <th><span>Customer Number</span></th>
+                        <td>{{$invoice->phone}}</td>
+                    </tr>
+                    <tr>
+                        <th><span>Customer Address</span></th>
+                        <td>
+                            {{$invoice->address}}
+                        </td>
                     </tr>
                 </table>
-            </article>
 
-            <div class="sig" style="display:flex; justify-content:space-between; margin-bottom:30px">
-                <div class="reciver">
-                    <p>...............................</p>
-                    <p>Receiver Signature</p>
-                </div>
-                <div class="manager">
-                    <p>...............................</p>
-                    <p>Manager Signature</p>
-                </div>
+                <table class="meta">
+                    <tr>
+                        <th>Date</th>
+                        <td> {{$invoice->date}}</td>
+                    </tr>
+                    <tr>
+                        <th>Invoice / Bill No</th>
+                        <td>{{$invoice->invoice_no}}</td>
+                    </tr>
+                    <tr>
+                        <th>Ref By</th>
+                        <td> {{$invoice->ref_by}}</td>
+                    </tr>
+                    <tr>
+                        <th>Sold By</th>
+                        <td> {{$invoice->sold_by}}</td>
+                    </tr>
+
+                </table>
             </div>
 
-            <aside>
-                <h1><span>Additional Notes</span></h1>
-                <div>
-                    <p style='font-size:12px'>পণ্যের কোন অংশ যদি পুড়ে যায়, ভেঙ্গে যায়, কোন অংশ বসে
-                        যায়,
-                        টেম্পারিং হয়, মরিচা পড়ে, বাঁকা হয়ে
-                        যায়, ফাঙ্গাশ পড়ে, পণ্যের ওয়ারেন্টি স্টিকার বা সিরিয়াল নাম্বার উঠে যায় বা অস্পষ্ট
-                        অবস্থায়
-                        পাওয়া
-                        যায় সেক্ষেত্রে তা ওয়ারেন্টির আওতায় আসবে না।</p>
-                    <p style='font-size:12px; margin-top:5px'>If any part of the product is burnt, broken, any
-                        part
-                        is
-                        sitting,
-                        tampering,
-                        rusting, bending, fungi, warranty sticker or serial number of the product is removed or
-                        found in
-                        unclear condition, it will not come under warranty.</p>
-                </div>
-            </aside>
+            <table class="inventory">
+                <thead>
+                    <tr>
+                        <th>Sl.</th>
+                        <th>Product Description</th>
+                        <th>Warranty</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($product as $item)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{ $item->product_desc }}</td>
+                        <td>{{ $item->warranty }}</td>
+                        <td>{{ $item->price }}</td>
+                        <td>{{ $item->product_qty }}</td>
+                        <td>{{ $item->product_qty *  $item->price}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+
+            <div style='float:right'>
+                <p style='font-size:15px; font-weight:bold'>Grand Total: {{$invoice->subtotal}}TK</p>
+            </div>
+
+            <table class="balance">
+                <tr>
+                    <th>Previous Due</th>
+                    <td>{{$invoice->previous_due}} TK</td>
+                </tr>
+                <tr>
+                    <th>Selling Amount</th>
+                    <td>{{$invoice->subtotal}} TK</td>
+                </tr>
+                <tr>
+                    <th>Collecton</th>
+                    <td>{{$invoice->collecton}} TK</td>
+                </tr>
+                <tr>
+                    <th>Net Oustanding</th>
+                    <td>{{$invoice->previous_due + $invoice->subtotal - $invoice->collecton}} TK</td>
+                </tr>
+            </table>
+        </article>
+
+        <div class="sig" style="display:flex; justify-content:space-between; margin-bottom:30px">
+            <div class="reciver">
+                <p>...............................</p>
+                <p>Receiver Signature</p>
+            </div>
+            <div class="manager">
+                <p>...............................</p>
+                <p>Manager Signature</p>
+            </div>
+        </div>
+
+        <aside>
+            <h1><span>Additional Notes</span></h1>
+            <div>
+                <p style='font-size:12px'>পণ্যের কোন অংশ যদি পুড়ে যায়, ভেঙ্গে যায়, কোন অংশ বসে
+                    যায়,
+                    টেম্পারিং হয়, মরিচা পড়ে, বাঁকা হয়ে
+                    যায়, ফাঙ্গাশ পড়ে, পণ্যের ওয়ারেন্টি স্টিকার বা সিরিয়াল নাম্বার উঠে যায় বা অস্পষ্ট
+                    অবস্থায়
+                    পাওয়া
+                    যায় সেক্ষেত্রে তা ওয়ারেন্টির আওতায় আসবে না।</p>
+                <p style='font-size:12px; margin-top:5px'>If any part of the product is burnt, broken, any
+                    part
+                    is
+                    sitting,
+                    tampering,
+                    rusting, bending, fungi, warranty sticker or serial number of the product is removed or
+                    found in
+                    unclear condition, it will not come under warranty.</p>
+            </div>
+        </aside>
+
+        <div style="display:flex; justify-content:center; margin-bottom:20px; margin-top: 10px;">
+            <div
+                style="height:30px; width:150px; background:#000; display:flex; justify-content:center; align-items:center">
+                <a style="color:#FFF; " href="javascript:window.print()"> Print or Download</a>
+            </div>
         </div>
     </div>
 
-    <div style="display:flex; justify-content:center; margin-bottom:20px">
-        <div
-            style="height:30px; width:150px; background:#000; display:flex; justify-content:center; align-items:center">
-            <a style="color:#FFF" href="javascript:window.print()"> Print</a>
-        </div>
-    </div>
 
-    <script>
-    window.onload = function() {
-        document.getElementById("download")
-            .addEventListener("click", () => {
-                const invoice = this.document.getElementById("invoice");
-                var opt = {
-                    filename: 'Shopna Enterprise',
-                    image: {
-                        type: 'jpeg',
-                        quality: 0.98
-                    },
-                    html2canvas: {
-                        scale: 2
-                    },
-                    jsPDF: {
-                        unit: 'in',
-                        format: 'letter',
-                        orientation: 'portrait'
-                    }
-                };
-                html2pdf().from(invoice).set(opt).save();
-            })
-    }
-    </script>
+
+
 
 
 </body>

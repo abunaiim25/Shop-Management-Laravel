@@ -23,45 +23,48 @@ Admin - Add Invoice
                                 <h3 class="text-dark"><strong>Add Product</strong></h3>
                             </div>
 
-                            <table class="_table">
-                                <thead>
-                                    <tr>
-                                        <th>Product Description</th>
-                                        <th>Warranty</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
+                            <div style="overflow-x: auto;">
+                                <table class="_table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Description</th>
+                                            <th>Warranty</th>
+                                            <th>Product Price</th>
+                                            <th>Quantity</th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
 
 
-                                <tbody id="table_body">
-                                    <tr>
-                                        <td>
-                                            <input name="product_desc" type=" text" class="form_control"
-                                                placeholder="Router Tp-Link" required>
-                                        </td>
-                                        <td>
-                                            <input name="warranty" type="text" class="form_control" placeholder="1"
-                                                required>
-                                        </td>
-                                        <td>
-                                            <input name="price" type="text" class="form_control" placeholder="1000"
-                                                required>
-                                        </td>
-                                        <td>
-                                            <input name="qty" type="text" class="form_control" placeholder="3" required>
-                                        </td>
-                                        <td>
-                                            <button class=" btn btn-success">
-                                                Save
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    <tbody id="table_body">
+                                        <tr>
+                                            <td>
+                                                <input name="product_desc" type=" text" class="form_control"
+                                                    placeholder="Router Tp-Link" required>
+                                            </td>
+                                            <td>
+                                                <input name="warranty" type="text" class="form_control" placeholder="1"
+                                                    required>
+                                            </td>
+                                            <td>
+                                                <input name="price" type="text" class="form_control" placeholder="1000"
+                                                    required>
+                                            </td>
+                                            <td>
+                                                <input name="qty" type="text" class="form_control" placeholder="3"
+                                                    required>
+                                            </td>
+                                            <td>
+                                                <button class=" btn btn-success">
+                                                    Save
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </form>
 
 
@@ -147,8 +150,8 @@ Admin - Add Invoice
                                     <div class="col-lg-4 col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Date:</label>
-                                            <input class="form-control bg-white" style="color: black" type="date"
-                                                name="date" required>
+                                            <input class="form-control bg-white" style="color: black"
+                                                type="datetime-local" name="date" required>
                                         </div>
                                     </div>
 
@@ -156,7 +159,7 @@ Admin - Add Invoice
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Name:</label>
                                             <input class="form-control bg-white" style="color: black" type="text"
-                                                name="name" placeholder="name" required>
+                                                name="name" placeholder="Naiim" required>
                                         </div>
                                     </div>
 
@@ -164,7 +167,7 @@ Admin - Add Invoice
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Person:</label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="person" placeholder="person" required>
+                                                name="person" placeholder="Rayhan" required>
                                         </div>
                                     </div>
 
@@ -172,7 +175,7 @@ Admin - Add Invoice
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Number:</label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="phone" placeholder="number" required>
+                                                name="phone" placeholder="01xxxxxxxxx" required>
                                         </div>
                                     </div>
 
@@ -180,7 +183,7 @@ Admin - Add Invoice
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Email:</label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="email" placeholder="email" required>
+                                                name="email" placeholder="email@gmail.com" required>
                                         </div>
                                     </div>
 
@@ -188,7 +191,7 @@ Admin - Add Invoice
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Address:</label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="address" placeholder="address" required>
+                                                name="address" placeholder="Dhaka, Bangladesh" required>
                                         </div>
                                     </div>
 
@@ -196,7 +199,7 @@ Admin - Add Invoice
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Ref By:</label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="ref_by" placeholder="ref by" required>
+                                                name="ref_by" placeholder="Saddam" required>
                                         </div>
                                     </div>
 
@@ -204,7 +207,7 @@ Admin - Add Invoice
                                         <div class="form-group">
                                             <label class="form-control-label text-dark">Sold By:</label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="sold_by" placeholder="sold by" required>
+                                                name="sold_by" placeholder="Srower" required>
                                         </div>
                                     </div>
                                 </div>
@@ -322,34 +325,4 @@ Admin - Add Invoice
 </style>
 
 
-<script>
-function create_tr(table_id) {
-    let table_body = document.getElementById(table_id),
-        first_tr = table_body.firstElementChild
-    tr_clone = first_tr.cloneNode(true);
-
-    table_body.append(tr_clone);
-
-    clean_first_tr(table_body.firstElementChild);
-}
-
-function clean_first_tr(firstTr) {
-    let children = firstTr.children;
-
-    children = Array.isArray(children) ? children : Object.values(children);
-    children.forEach(x => {
-        if (x !== firstTr.lastElementChild) {
-            x.firstElementChild.value = '';
-        }
-    });
-}
-
-function remove_tr(This) {
-    if (This.closest('tbody').childElementCount == 1) {
-        alert(" You Don't have Permission to Delete This ?");
-    } else {
-        This.closest('tr').remove();
-    }
-}
-</script>
 @endsection

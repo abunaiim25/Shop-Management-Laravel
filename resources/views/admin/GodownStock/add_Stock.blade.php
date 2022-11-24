@@ -37,7 +37,7 @@ Admin - Add Godown Stock
                                     <label class="form-control-label">Product Name: <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control bg-white " style="color: black" type="text"
-                                        name="product_name" placeholder="product name" required>
+                                        name="product_name" placeholder="Router22" required>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -60,7 +60,7 @@ Admin - Add Godown Stock
                                 <div class="form-group mg-b-10-force">
                                     <label class="form-control-label">Brand: <span class="text-danger">*</span></label>
                                     <input class="form-control bg-white " style="color: black" type="text" name="brand"
-                                        placeholder="product brand" required>
+                                        placeholder="TP-Link" required>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -69,7 +69,7 @@ Admin - Add Godown Stock
                                     <label class="form-control-label">Quantity: <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control  bg-white" style="color: black" type="number"
-                                        name="product_quantity" placeholder="product quantity" required>
+                                        name="product_quantity" placeholder="30" required>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -79,7 +79,7 @@ Admin - Add Godown Stock
                                     <label class="form-control-label">Per Cost Price: <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control  bg-white" style="color: black" type="text"
-                                        name="per_cost_price" placeholder=" per cost price" required>
+                                        name="per_cost_price" placeholder="700" required>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -88,7 +88,7 @@ Admin - Add Godown Stock
                                     <label class="form-control-label">Total Cost Price: <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control  bg-white" style="color: black" type="text"
-                                        name="total_cost_price" placeholder="total cost price" required>
+                                        name="total_cost_price" placeholder="21000" required>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -97,7 +97,7 @@ Admin - Add Godown Stock
                                     <label class="form-control-label">Per Selling Price: <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control  bg-white" style="color: black" type="text"
-                                        name="per_selling_price" placeholder="per selling price" required>
+                                        name="per_selling_price" placeholder="1000" required>
                                 </div>
                             </div><!-- col-4 -->
 

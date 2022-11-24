@@ -45,6 +45,15 @@ $front = App\Models\FrontControl::first();
         </li>
 
         <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('admin_combined_ledger')}}">
+                <span class="menu-icon">
+                    <i class="fa-solid fa-shop"></i>
+                </span>
+                <span class="menu-title">Combined Ledger</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
             <a class="nav-link" href="{{url('admin_contact')}}">
                 <span class="menu-icon">
                     <i class="fa-solid fa-comments"></i>

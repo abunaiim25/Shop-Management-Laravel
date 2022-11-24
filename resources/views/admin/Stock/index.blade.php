@@ -71,7 +71,8 @@ Admin - Shop Stock
 
                     <div style="display: flex; justify-content: space-between;" class="mb-2">
                         <h6 class="card-body-title">Shop Stoke Product List</h6>
-                        <a href="{{url('/admin_add_shop_stoke')}}" class=" btn btn-info mg-r-5">+ Add Shop Stock</a>
+                        <a href="{{url('/admin_add_shop_stoke')}}" class=" btn btn-info btn-rounded">+ Add Shop
+                            Stock</a>
                     </div>
                     @if ($stock->count() > 0)
                     <div class="table-wrapper" style="overflow: auto">

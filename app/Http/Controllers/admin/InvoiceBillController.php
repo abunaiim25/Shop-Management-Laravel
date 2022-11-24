@@ -20,7 +20,7 @@ class InvoiceBillController extends Controller
         //or
         $invoice_bill = DB::table('invoice_bills')
             ->join('customer_information', 'invoice_bills.id', 'customer_information.order_id') //join
-            ->select("invoice_bills.*", "customer_information.name as name", "customer_information.date as date") //if same column in a table
+            ->select("invoice_bills.*", "customer_information.name as name", "customer_information.date as date", "customer_information.phone as phone") //if same column in a table
             ->orderBy('invoice_bills.id', 'DESC')->paginate(10);
         //dd($invoice_bill);
         return view("admin.InvoiceBill.index", compact('invoice_bill'));
@@ -79,6 +79,14 @@ class InvoiceBillController extends Controller
     //=====================place_order_invoice======================
     public function place_order_invoice(Request $request)
     {
+        /**
+         * $transactions = Transaction::where('user_type', '=', 'customer')
+            ->where('user_type_id', '=', $request->customer_id)
+            ->whereBetween('date', [$from, $to])
+            ->get();
+        $credit = $transactions->sum('credit');
+        $debit = $transactions->sum('debit');
+         */
         $order_id = InvoiceBill::insertGetId([
             'invoice_no' => 'SHOPNO-' . (mt_rand(10000000, 99999999)),
             'previous_due' => $request->previous_due,
@@ -146,7 +154,7 @@ class InvoiceBillController extends Controller
         $subtotal = DB::table("invoice_bill_items")->where('order_id', $id)->get()->sum(function ($item) {
             return $item->price * $item->product_qty;
         });
-      
+
         InvoiceBill::where('id', $id)->update([
             'previous_due' => $request->previous_due,
             'subtotal' => $subtotal,
@@ -156,16 +164,16 @@ class InvoiceBillController extends Controller
 
         //===============InvoiceBillItem================
         foreach ($request->prodId as $key => $value) {
-            $data = array(                 
-                'product_desc'=>$request->product_desc[$key],
-                'warranty'=>$request->warranty[$key],  
-                'price'=>$request->price[$key],
-                'product_qty'=>$request->product_qty[$key],                   
-            );         
-            InvoiceBillItem::where('id',$request->prodId[$key])
-            ->update($data); 
-      }
-      
+            $data = array(
+                'product_desc' => $request->product_desc[$key],
+                'warranty' => $request->warranty[$key],
+                'price' => $request->price[$key],
+                'product_qty' => $request->product_qty[$key],
+            );
+            InvoiceBillItem::where('id', $request->prodId[$key])
+                ->update($data);
+        }
+
         //===============CustomerInformation================
         CustomerInformation::where('order_id', $id)->update([
             'name' => $request->name,

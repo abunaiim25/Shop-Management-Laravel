@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AboutadminController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\CombinedLedgerController;
 use App\Http\Controllers\admin\ContactadminController;
 use App\Http\Controllers\admin\EmailController;
 use App\Http\Controllers\admin\FrontcontrolController;
@@ -59,16 +60,25 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('admin_update_godown_stock/{id}', [GodownStockController::class, 'update']);
     Route::get('admin_godown_stock_delete/{id}', [GodownStockController::class, 'Delete']);
     Route::get('godown_stock_search', [GodownStockController::class, 'godown_stock_search']);
-    //================Admin Godown stock========================
+    //================Admin Invoice stock========================
     Route::get('admin_invoice_bill', [InvoiceBillController::class, 'index']);
     Route::get('admin_add_invoice', [InvoiceBillController::class, 'admin_add_invoice']);
     Route::post('product_invoice_store', [InvoiceBillController::class, 'product_invoice_store']);
     Route::get('admin_seen_invoicebill/{id}', [InvoiceBillController::class, 'seen_invoicebill']);
     Route::get('admin_product_invoice_delete/{id}', [InvoiceBillController::class, 'admin_product_invoice_delete']);
-    Route::post('place_order_invoice',[InvoiceBillController::class,'place_order_invoice']);
-    Route::get('place_order_invoice_delete/{id}',[InvoiceBillController::class,'place_order_invoice_delete']);
+    Route::post('place_order_invoice', [InvoiceBillController::class, 'place_order_invoice']);
+    Route::get('place_order_invoice_delete/{id}', [InvoiceBillController::class, 'place_order_invoice_delete']);
     Route::get('admin_place_order_invoice_edit/{id}', [InvoiceBillController::class, 'admin_place_order_invoice_edit']);
-    Route::post('place_order_invoice_updated/{id}',[InvoiceBillController::class,'place_order_invoice_updated']);
+    Route::post('place_order_invoice_updated/{id}', [InvoiceBillController::class, 'place_order_invoice_updated']);
+    //==================================CombinedLedger==============================
+    Route::get('admin_combined_ledger', [CombinedLedgerController::class, 'index']);
+    Route::post('customer_ledger_store', [CombinedLedgerController::class, 'customer_ledger_store']);
+    Route::post('customer_ledger_debit/{id}', [CombinedLedgerController::class, 'customer_ledger_debit']);
+    Route::post('customer_ledger_credit/{id}', [CombinedLedgerController::class, 'customer_ledger_credit']);
+    Route::get('admin_seen_ledger/{id}', [CombinedLedgerController::class, 'admin_seen_ledger']);
+    Route::get('customer_ledger_edit/{id}', [CombinedLedgerController::class, 'customer_ledger_edit']);
+    Route::put('customer_ledger_update', [CombinedLedgerController::class, 'customer_ledger_update']);
+    Route::get('customer_ledger_delete/{id}', [CombinedLedgerController::class, 'customer_ledger_delete']);
 
     //================admin user=====================
     Route::get('users', [UserController::class, 'users']);

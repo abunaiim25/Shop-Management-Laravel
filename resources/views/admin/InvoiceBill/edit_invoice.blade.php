@@ -36,44 +36,46 @@
                                 @csrf
 
                                 @if ($product->count() > 0)
-                                <table class="_table">
-                                    <thead>
-                                        <tr>
-                                            <th>Product Description</th>
-                                            <th>Warranty</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                        </tr>
-                                    </thead>
+                                <div style="overflow-x: auto;">
+                                    <table class="_table">
+                                        <thead>
+                                            <tr>
+                                                <th>Product Description</th>
+                                                <th>Warranty</th>
+                                                <th>Product Price</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
 
-                                    @foreach ($product as $row)
-                                    <tbody id="table_body">
-                                        <tr>
+                                        @foreach ($product as $row)
+                                        <tbody id="table_body">
+                                            <tr>
 
-                                            <input name="prodId[]" type="hidden" class="form_control"
-                                                placeholder="Router Tp-Link" value="{{ $row->id }}" required>
+                                                <input name="prodId[]" type="hidden" class="form_control"
+                                                    placeholder="Router Tp-Link" value="{{ $row->id }}" required>
 
-                                            <td>
-                                                <input name="product_desc[]" type=" text" class="form_control"
-                                                    placeholder="Router Tp-Link" value="{{ $row->product_desc }}"
-                                                    required>
-                                            </td>
-                                            <td>
-                                                <input name="warranty[]" type="text" class="form_control"
-                                                    placeholder="1" value="{{ $row->warranty }}" required>
-                                            </td>
-                                            <td>
-                                                <input name="price[]" type="text" class="form_control"
-                                                    placeholder="1000" value="{{ $row->price }}" required>
-                                            </td>
-                                            <td>
-                                                <input name="product_qty[]" type="text" class="form_control"
-                                                    placeholder="3" value="{{ $row->product_qty }}" required>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    @endforeach
-                                </table>
+                                                <td>
+                                                    <input name="product_desc[]" type=" text" class="form_control"
+                                                        placeholder="Router Tp-Link" value="{{ $row->product_desc }}"
+                                                        required>
+                                                </td>
+                                                <td>
+                                                    <input name="warranty[]" type="text" class="form_control"
+                                                        placeholder="1" value="{{ $row->warranty }}" required>
+                                                </td>
+                                                <td>
+                                                    <input name="price[]" type="text" class="form_control"
+                                                        placeholder="1000" value="{{ $row->price }}" required>
+                                                </td>
+                                                <td>
+                                                    <input name="product_qty[]" type="text" class="form_control"
+                                                        placeholder="3" value="{{ $row->product_qty }}" required>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        @endforeach
+                                    </table>
+                                </div>
                                 @else
                                 @endif
 
@@ -84,7 +86,8 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-dark">Previous Due:</label>
+                                                <label class="form-control-label text-dark">Previous
+                                                    Due:</label>
                                                 <input class="form-control bg-white" style="color: black" type="text"
                                                     name="previous_due" value="{{ $invoice->previous_due }}"
                                                     placeholder="0" required>
