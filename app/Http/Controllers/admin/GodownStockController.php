@@ -7,12 +7,16 @@ use App\Models\Category;
 use App\Models\GodownStock;
 use Illuminate\Support\Facades\File; //for delete image
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GodownStockController extends Controller
 {
     public function index()
     {
-        $stock = GodownStock::latest()->paginate(10);
+        $stock =  DB::table('godown_stocks')
+        ->join('categories', 'godown_stocks.category_id', 'categories.id')
+        ->select("godown_stocks.*", "categories.category_name as category_name")
+        ->latest()->paginate(10);
         return view("admin.GodownStock.index", compact("stock"));
     }
 
@@ -111,18 +115,19 @@ class GodownStockController extends Controller
     }
 
     //searching product
-    public function shop_stock_search(Request $request)
+    public function godown_stock_search(Request $request)
     {
-        $stock = GodownStock::
-            //join('shop_stocks', 'categories.id', '=', 'shop_stocks.category_id')
-            where('product_name', 'like', '%' . $request->search . '%')
+        $stock =  DB::table('godown_stocks')
+        ->join('categories', 'godown_stocks.category_id', 'categories.id')
+        
+            ->where('product_name', 'like', '%' . $request->search . '%')
             ->orWhere('brand', 'like', '%' . $request->search . '%')
             ->orWhere('product_quantity', 'like', '%' . $request->search . '%')
             ->orWhere('per_cost_price', 'like', '%' . $request->search . '%')
             ->orWhere('total_cost_price', 'like', '%' . $request->search . '%')
             ->orWhere('per_selling_price', 'like', '%' . $request->search . '%')
-            ->orWhere('created_at', 'like', '%' . $request->search . '%')
-            ->orWhere('updated_at', 'like', '%' . $request->search . '%')
+            
+            ->orWhere('category_name', 'like', '%' . $request->search . '%')
             ->paginate(10);
         return view("admin.GodownStock.index", compact("stock"));
     }

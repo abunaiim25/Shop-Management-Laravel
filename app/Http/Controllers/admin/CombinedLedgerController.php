@@ -145,12 +145,20 @@ class CombinedLedgerController extends Controller
     //========================Delete===========
     public function customer_ledger_delete($id)
     {
-        $item = LedgerCustomer::where('id', $id);
-        $item = CombinedLedger::where('customerLedger_id', $id);
-        
         DB::table('ledger_customers')->where('id', $id)->delete();
         DB::table('combined_ledgers')->where('customerLedger_id', $id)->delete();
-        
         return Redirect()->back()->with('delete', 'Customer & Ledger Deleted Successfully');
     }
+    
+        //searching product
+        public function customer_ledger_search(Request $request)
+        {
+            $customer  = LedgerCustomer::addSelect(['latest_balance' => CombinedLedger::select('balance')->whereColumn('customerLedger_id', 'ledger_customers.id')->latest()->take(1)])
+                ->where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('phone', 'like', '%' . $request->search . '%')
+                ->orWhere('email', 'like', '%' . $request->search . '%')
+                ->orWhere('address', 'like', '%' . $request->search . '%')
+                ->paginate(10);
+            return view("admin.CombinedLedger.index", compact('customer'));
+        }
 }

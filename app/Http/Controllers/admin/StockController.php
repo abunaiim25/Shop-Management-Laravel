@@ -13,7 +13,10 @@ class StockController extends Controller
 {
     public function index()
     {
-        $stock = ShopStock::latest()->paginate(10);
+        $stock = DB::table('shop_stocks')
+        ->join('categories', 'shop_stocks.category_id', 'categories.id')
+        ->select("shop_stocks.*", "categories.category_name as category_name")
+        ->latest()->paginate(10);
         return view("admin.Stock.index", compact("stock"));
     }
 
@@ -114,17 +117,18 @@ class StockController extends Controller
     //searching product
     public function shop_stock_search(Request $request)
     {
-        $stock = ShopStock::
-            //join('shop_stocks', 'categories.id', '=', 'shop_stocks.category_id')
-            where('product_name', 'like', '%' . $request->search . '%')
+        $stock = DB::table('shop_stocks')
+            ->join('categories', 'shop_stocks.category_id', 'categories.id') 
+            //->select("shop_stocks.*", "categories.category_name as category_name")
+            ->where('product_name', 'like', '%' . $request->search . '%')
             ->orWhere('brand', 'like', '%' . $request->search . '%')
             ->orWhere('product_quantity', 'like', '%' . $request->search . '%')
             ->orWhere('per_cost_price', 'like', '%' . $request->search . '%')
             ->orWhere('total_cost_price', 'like', '%' . $request->search . '%')
             ->orWhere('per_selling_price', 'like', '%' . $request->search . '%')
-            ->orWhere('created_at', 'like', '%' . $request->search . '%')
-            ->orWhere('updated_at', 'like', '%' . $request->search . '%')
+            
+            ->orWhere('category_name', 'like', '%' . $request->search . '%')
             ->paginate(10);
         return view("admin.Stock.index", compact("stock"));
     }
-} //
+} 

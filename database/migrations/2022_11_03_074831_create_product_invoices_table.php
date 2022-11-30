@@ -15,6 +15,7 @@ class CreateProductInvoicesTable extends Migration
     {
         Schema::create('product_invoices', function (Blueprint $table) {
             $table->id();
+            $table->string('productStock_id');
             $table->string('product_desc');
             $table->integer('warranty');
             $table->integer('price');

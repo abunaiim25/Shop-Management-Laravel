@@ -9,7 +9,7 @@ Admin - Godown Stock
 <ul class="navbar-nav w-100">
     <li class="nav-item w-100">
 
-        <form action="{{url('shop_stock_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
+        <form action="{{url('godown_stock_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
             {{csrf_field()}}
             <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search godown stock">
         </form>
@@ -104,7 +104,7 @@ Admin - Godown Stock
                                                 alt="">
                                         </td>
                                         <td>{{ $row->product_name }}</td>
-                                        <td>{{ $row->category->category_name }}</td>
+                                        <td>{{ $row->category_name }}</td>
                                         <td>{{ $row->brand }}</td>
                                         <td>
                                             @if($row->product_quantity > 0)

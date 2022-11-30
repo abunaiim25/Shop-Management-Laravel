@@ -9,9 +9,9 @@ Admin - Invoice
 <ul class="navbar-nav w-100">
     <li class="nav-item w-100">
 
-        <form action="{{url('shop_stock_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
+        <form action="{{url('invoice_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
             {{csrf_field()}}
-            <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search shop stock">
+            <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search customer">
         </form>
 
     </li>
@@ -98,19 +98,18 @@ Admin - Invoice
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->date}}</td>
-                                        <td>{{ $item->invoice_no }}</td>
+                                        <td>{{ $item->invoice_no ?? 0 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->phone }}</td>
-                                        <td>{{$item->subtotal}} TK</td>
+                                        <td>{{$item->subtotal ?? 0 }} TK</td>
                                         <td>
                                             <a href="{{ url('admin_seen_invoicebill/'. $item->id) }}"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="fas fa-eye"></i> </a>
-
-                                            <a href="{{ url('admin_place_order_invoice_edit/'. $item->id ) }}"
+                                            <!-- <a href="{{ url('admin_place_order_invoice_edit/'. $item->id ) }}"
                                                 class="btn btn-sm btn-info">
                                                 <i class="fa fa-pencil"></i> </a>
-
+-->
                                             <a href="{{ url('place_order_invoice_delete/'. $item->id) }}"
                                                 class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are You Sure To Delete?')"><i

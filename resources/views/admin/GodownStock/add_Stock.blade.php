@@ -42,17 +42,25 @@ Admin - Add Godown Stock
                             </div><!-- col-4 -->
 
                             <div class="col-lg-4">
-                                <div class="form-group mg-b-10-force">
-                                    <label class="form-control-label">Category: <span
-                                            class="text-danger">*</span></label>
-                                    <select required class="form-control select2  bg-white" style="color: black"
-                                        name="category_id" data-placeholder="Choose Category">
-                                        <option label="Choose category"></option>
-                                        @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->category_name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                <label class="form-control-label">Category: <span class="text-danger">*</span></label>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="form-group mg-b-10-force">
+                                            <select required class="form-control select2  bg-white" style="color: black"
+                                                name="category_id" data-placeholder="Choose Category">
+                                                <option label="Choose category"></option>
+                                                @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->category_name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a class="btn btn-info btn-rounded" data-toggle="modal"
+                                            data-target="#modalLoginForm">+
+                                        </a>
+                                    </div>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -134,6 +142,39 @@ Admin - Add Godown Stock
         </div><!-- card -->
     </div>
 
+
+    <form action="{{ url('admin_store_category') }}" method="POST">
+        @csrf
+        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content  bg-white">
+                    <div class="text-center my-4">
+                        <h4 class="modal-title w-100 font-weight-bold text-dark">Category
+                        </h4>
+                    </div>
+
+                    <div class="modal-body mx-3">
+                        <div class="row">
+
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <input class="form-control bg-white" style="color: black" type="text"
+                                        name="category_name" placeholder="category" required>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class=" d-flex justify-content-center mb-4">
+                        <button class="btn btn-info">Add</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 @endsection

@@ -133,7 +133,7 @@ Admin - Product Category
                                 <label for="exampleInputEmail1">Add Category</label>
                                 <input style="color: black" type="text" name="category_name" class="form-control bg-white
                            @error('category_name') is-invalid @enderror" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter Category">
+                                    aria-describedby="emailHelp" placeholder="Router">
 
                                 @error('category_name')
                                 <span class="text-danger">{{ $message }}</span>

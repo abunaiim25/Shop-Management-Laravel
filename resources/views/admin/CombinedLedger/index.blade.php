@@ -9,9 +9,9 @@ Admin - Combined Ledger
 <ul class="navbar-nav w-100">
     <li class="nav-item w-100">
 
-        <form action="{{url('shop_stock_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
+        <form action="{{url('customer_ledger_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
             {{csrf_field()}}
-            <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search shop stock">
+            <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search customer">
         </form>
 
     </li>

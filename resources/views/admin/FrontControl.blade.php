@@ -25,8 +25,8 @@ Admin - Frontend Design
 
 
                 {{-- LOGO --}}
-                <div class="card mb-3" style="background:#fff;">
-                    <div class="card-header bg-info"><strong> LOGO</strong>
+                <div class="card mb-3 " style="background:#fff;">
+                    <div class="card-header bg-secondary text-dark"><strong> LOGO</strong>
                     </div>
 
                     <div class="row p-3">
@@ -50,10 +50,34 @@ Admin - Frontend Design
 
                 </div>
 
+                <div class="card mb-3 " style="background:#fff;">
+                    <div class="card-header bg-secondary text-dark"><strong> About Shop</strong>
+                    </div>
+
+                    <div class="row p-3">
+                        <div class="col-lg-12">
+                            <label for="" class="text-black"><strong>Address:</strong></label>
+                            <input type="text" name="footer_contact_address" class="form-control bg-white mb-3"
+                                style="color: black;" placeholder="address" value="{{$front->footer_contact_address}}">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="" class="text-black"><strong>Phone:</strong></label>
+                            <input type="text" name="footer_contact_phone" class="form-control bg-white mb-3"
+                                style="color: black;" placeholder="phone" value="{{$front->footer_contact_phone}}">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="" class="text-black"><strong>Email:</strong></label>
+                            <input type="text" name="footer_contact_email" class="form-control bg-white mb-3"
+                                style="color: black;" placeholder="email" value="{{$front->footer_contact_email}}">
+                        </div>
+                    </div>
+
+                </div>
+
 
                 {{-- Home Background --}}
                 <div class="card mb-3" style="background:#fff;">
-                    <div class="card-header bg-info"><strong>Home
+                    <div class="card-header  bg-secondary text-dark"><strong>Home
                             Background</strong> </div>
 
                     <div class="row p-3">
@@ -98,28 +122,10 @@ Admin - Frontend Design
 
                 {{-- Footer --}}
                 <div class="card mb-3" style="background:#fff;">
-                    <div class="card-header bg-info"><strong>Footer
+                    <div class="card-header bg-secondary text-dark"><strong>Footer
                         </strong> </div>
 
                     <div class="row p-3">
-
-                        <div class="col-lg-4">
-                            <label for="" class="text-black"><strong>Footer Address:</strong></label>
-                            <input type="text" name="footer_contact_address" class="form-control bg-white mb-3"
-                                style="color: black;" placeholder="address" value="{{$front->footer_contact_address}}">
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="text-black"><strong>Footer Phone:</strong></label>
-                            <input type="text" name="footer_contact_phone" class="form-control bg-white mb-3"
-                                style="color: black;" placeholder="phone" value="{{$front->footer_contact_phone}}">
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="" class="text-black"><strong>Footer Email:</strong></label>
-                            <input type="text" name="footer_contact_email" class="form-control bg-white mb-3"
-                                style="color: black;" placeholder="email" value="{{$front->footer_contact_email}}">
-                        </div>
-
-
 
                         <div class="col-lg-4 col-6">
                             <label for="" class="text-black"><strong>Our Item Image-1:</strong></label>

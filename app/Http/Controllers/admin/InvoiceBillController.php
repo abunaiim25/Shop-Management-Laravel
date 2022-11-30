@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CustomerInformation;
+use App\Models\FrontControl;
 use App\Models\InvoiceBill;
 use App\Models\InvoiceBillItem;
 use App\Models\ProductInvoice;
@@ -35,8 +36,9 @@ class InvoiceBillController extends Controller
             ->first();
 
         $product = DB::table('invoice_bill_items')->where('order_id', $id)->get();
+        $front = FrontControl::First();
 
-        return view("admin.InvoiceBill.seen_invoicebill", compact('invoice', 'product'));
+        return view("admin.InvoiceBill.seen_invoicebill", compact('invoice', 'product', 'front'));
     }
 
     //====================ADD Invoice Page=====================
@@ -79,14 +81,6 @@ class InvoiceBillController extends Controller
     //=====================place_order_invoice======================
     public function place_order_invoice(Request $request)
     {
-        /**
-         * $transactions = Transaction::where('user_type', '=', 'customer')
-            ->where('user_type_id', '=', $request->customer_id)
-            ->whereBetween('date', [$from, $to])
-            ->get();
-        $credit = $transactions->sum('credit');
-        $debit = $transactions->sum('debit');
-         */
         $order_id = InvoiceBill::insertGetId([
             'invoice_no' => 'SHOPNO-' . (mt_rand(10000000, 99999999)),
             'previous_due' => $request->previous_due,
@@ -157,7 +151,8 @@ class InvoiceBillController extends Controller
 
         InvoiceBill::where('id', $id)->update([
             'previous_due' => $request->previous_due,
-            'subtotal' => $subtotal,
+            //'subtotal' => $subtotal,
+            'subtotal' => $request->subtotal,
             'collecton' => $request->collecton,
             'updated_at' => Carbon::now(),
         ]);
@@ -189,4 +184,26 @@ class InvoiceBillController extends Controller
 
         return Redirect()->to('/admin_invoice_bill')->with('status', 'Invoice/Bill updated Successfully');
     }
-}
+    
+    
+    //invoice_search
+    public function invoice_search(Request $request)
+    {
+        $invoice_bill =  DB::table('customer_information')
+        ->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id') //join
+        //customer_information
+            ->where('date', 'like', '%' . $request->search . '%')
+            ->orWhere('name', 'like', '%' . $request->search . '%')
+            ->orWhere('person', 'like', '%' . $request->search . '%')
+            ->orWhere('phone', 'like', '%' . $request->search . '%')
+            ->orWhere('email', 'like', '%' . $request->search . '%')
+            ->orWhere('address', 'like', '%' . $request->search . '%')
+            ->orWhere('ref_by', 'like', '%' . $request->search . '%')
+            ->orWhere('sold_by', 'like', '%' . $request->search . '%')
+            //invoice_bills
+            ->orWhere('invoice_no', 'like', '%' . $request->search . '%')
+            ->orWhere('subtotal', 'like', '%' . $request->search . '%')
+            ->paginate(10);
+        return view("admin.InvoiceBill.index", compact("invoice_bill"));
+    }
+}   

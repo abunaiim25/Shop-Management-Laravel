@@ -8,7 +8,9 @@
 </head>
 
 <body>
-
+    @php
+    $front = App\Models\FrontControl::first();
+    @endphp
 
     <div class="body">
         <header>
@@ -17,17 +19,14 @@
             margin-bottom:5px">
                 Shopno
                 Enterprise</h2>
-            <p style="display:flex; justify-content:center; font-size:12px;">Address: Lorem ipsum dolor sit
-                amet
-                consectetur adipisicing elit. Cupiditate, voluptates.
+            <p style="display:flex; justify-content:center; font-size:12px;">
+                Address: {{$front->footer_contact_address}}
             </p>
             <p style="display:flex; justify-content:center; font-size:12px;">
-                Service Hot Line: 01812112395, 01812112395. cell: 01812112395</p>
-            <p style="display:flex; justify-content:center; font-size:12px;">Email: naiim@gmail.com,
-                naiim@gmail.com, naiim@gmail.com
+                Service Hot Line: {{$front->footer_contact_phone}}</p>
+            <p style="display:flex; justify-content:center; font-size:12px;">Email: {{$front->footer_contact_email}}
             </p>
-            <p style="display:flex; justify-content:center; font-size:12px;">Visit: www.shonnoenterprise.com
-            </p>
+
         </header>
 
         <article>

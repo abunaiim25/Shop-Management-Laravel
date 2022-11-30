@@ -103,7 +103,7 @@ Admin - Shop Stock
                                                 src="{{ asset('img_DB/product/image/' . $row->image) }}" alt="">
                                         </td>
                                         <td>{{ $row->product_name }}</td>
-                                        <td>{{ $row->category->category_name }}</td>
+                                        <td>{{ $row->category_name }}</td>
                                         <td>{{ $row->brand }}</td>
                                         <td>
                                             @if($row->product_quantity > 0)
