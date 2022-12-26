@@ -81,6 +81,49 @@
 
 
 
+    <!--Autocomplite search-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT
+        2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+    var availableTags = [];
+    $.ajax({
+        method: "GET",
+        url: "/product-list",
+        success: function(response) {
+            startAutoComplete(response);
+        }
+    });
+
+    function startAutoComplete(availableTags) {
+        $("#search_stock_product_name").autocomplete({
+            source: availableTags
+        });
+    }
+    </script>
+    <!--End Autocomplite search-->
+    <!--
+    <script>
+    var availableTags = [];
+    $.ajax({
+        method: "GET",
+        url: "/invoice_search",
+        success: function(response) {
+            startAutoComplete(response);
+        }
+    });
+
+    function startAutoComplete(availableTags) {
+        $("#invoice_search").autocomplete({
+            source: availableTags
+        });
+    }
+    </script>
+    -->
+
+
 </body>
 
 </html>

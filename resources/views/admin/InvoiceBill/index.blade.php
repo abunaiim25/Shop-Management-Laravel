@@ -11,7 +11,7 @@ Admin - Invoice
 
         <form action="{{url('invoice_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
             {{csrf_field()}}
-            <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search customer">
+            <input type="text" name="invoice_search" class="form-control bg-white text-dark" placeholder="search customer">
         </form>
 
     </li>
@@ -103,17 +103,13 @@ Admin - Invoice
                                         <td>{{ $item->phone }}</td>
                                         <td>{{$item->subtotal ?? 0 }} TK</td>
                                         <td>
-                                            <a href="{{ url('admin_seen_invoicebill/'. $item->id) }}"
-                                                class="btn btn-warning btn-sm">
+                                            <a href="{{ url('admin_seen_invoicebill/'. $item->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-eye"></i> </a>
                                             <!-- <a href="{{ url('admin_place_order_invoice_edit/'. $item->id ) }}"
                                                 class="btn btn-sm btn-info">
                                                 <i class="fa fa-pencil"></i> </a>
--->
-                                            <a href="{{ url('place_order_invoice_delete/'. $item->id) }}"
-                                                class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Are You Sure To Delete?')"><i
-                                                    class="fa fa-trash"></i> </a>
+                                            -->
+                                            <a href="{{ url('place_order_invoice_delete/'. $item->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa fa-trash"></i> </a>
                                         </td>
                                     </tr>
                                     @endforeach

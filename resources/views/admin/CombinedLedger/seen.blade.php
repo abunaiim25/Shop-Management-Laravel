@@ -123,6 +123,7 @@
                             </td>
                             <td></td>
                         </tr>
+
                     </tbody>
 
                 </table>
@@ -246,7 +247,7 @@
 
     .body {
         box-sizing: border-box;
-        height: 11in;
+
         margin: 0 auto;
         overflow: hidden;
         width:

@@ -6,6 +6,7 @@ Admin - Add Invoice
 
 @section('admin_content')
 
+
 <div class="body">
     <div class="sl-mainpanel m-4 ">
         <nav class="breadcrumb sl-breadcrumb">
@@ -27,7 +28,7 @@ Admin - Add Invoice
                                 <table class="_table">
                                     <thead>
                                         <tr>
-                                            <th>Product Description</th>
+                                            <th>Product Name</th>
                                             <th>Warranty</th>
                                             <th>Product Price</th>
                                             <th>Quantity</th>
@@ -41,8 +42,20 @@ Admin - Add Invoice
                                     <tbody id="table_body">
                                         <tr>
                                             <td>
+                                                <!--
                                                 <input name="product_desc" type=" text" class="form_control"
                                                     placeholder="Router Tp-Link" required>
+                                                -->
+
+                                                <div class="search-bar">
+                                                    <div class="input-group">
+                                                        <input type="search" id="search_stock_product_name" class="form-control bg-white
+                                                            text-dark" name="product_desc" placeholder="search product"
+                                                            aria-label="search_stock_product_name"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+
                                             </td>
                                             <td>
                                                 <input name="warranty" type="text" class="form_control" placeholder="1"
@@ -225,6 +238,7 @@ Admin - Add Invoice
         </div>
     </div>
 </div>
+
 
 <style>
 ._container {

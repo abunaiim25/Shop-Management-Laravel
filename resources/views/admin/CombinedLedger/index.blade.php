@@ -298,10 +298,10 @@ Admin - Combined Ledger
 <!--End Edit Modal-->
 
 
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-    crossorigin="anonymous">
-</script>
+
 <!--Edit Modal-->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
     $(document).on('click', '.editbtn', function() {

@@ -19,7 +19,7 @@ use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\NewsController;
 use App\Http\Controllers\frontend\SearchController;
-
+use App\Http\Controllers\SearchControll;
 
 //admin & frontend -> /home or index after login
 Route::get('/home', [HomeController::class, 'redirect'])->middleware('auth', 'verified');
@@ -51,7 +51,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('admin_update_shop_stock/{id}', [StockController::class, 'update']);
     Route::get('admin_shop_stock_delete/{id}', [StockController::class, 'Delete']);
     Route::get('shop_stock_search', [StockController::class, 'shop_stock_search']);
-
+    
+   //================Admin product search========================
+    Route::get('/product-list', [SearchControll::class, 'product_list_ajax']);
+    
     //================Admin Godown stock========================
     Route::get('admin_godown_stock', [GodownStockController::class, 'index']);
     Route::get('admin_add_godown_stoke', [GodownStockController::class, 'add_godown_stoke']);
@@ -74,6 +77,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('place_order_invoice_updated/{id}', [InvoiceBillController::class, 'place_order_invoice_updated']);
     Route::get('invoice_search', [InvoiceBillController::class, 'invoice_search']);
     Route::get('/autocomplete-search', [InvoiceBillController::class, 'search_stock_product']);
+    //Route::get('/invoice_search', [InvoiceBillController::class, 'invoice_search_ajax']);
+        
     //==================================CombinedLedger==============================
     Route::get('admin_combined_ledger', [CombinedLedgerController::class, 'index']);
     Route::post('customer_ledger_store', [CombinedLedgerController::class, 'customer_ledger_store']);

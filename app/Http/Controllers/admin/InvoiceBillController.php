@@ -8,6 +8,7 @@ use App\Models\FrontControl;
 use App\Models\InvoiceBill;
 use App\Models\InvoiceBillItem;
 use App\Models\ProductInvoice;
+use App\Models\ShopStock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,11 @@ class InvoiceBillController extends Controller
                 'product_qty' => $product->qty,
                 'created_at' => Carbon::now(),
             ]);
+            
+            /*stock or outOfStock */
+            $prod = ShopStock::where('product_name', $product->product_desc)->first();
+            $prod->product_quantity = $prod->product_quantity - $product->qty;
+            $prod->update();
         }
 
         CustomerInformation::insert([
@@ -117,6 +123,8 @@ class InvoiceBillController extends Controller
 
         //delete from cart
         ProductInvoice::where('user_ip', request()->ip())->delete();
+        
+        //
         return Redirect()->to('/admin_invoice_bill')->with('status', 'Invoice/Bill added Successfully');
     }
 
@@ -192,17 +200,17 @@ class InvoiceBillController extends Controller
         $invoice_bill =  DB::table('customer_information')
         ->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id') //join
         //customer_information
-            ->where('date', 'like', '%' . $request->search . '%')
-            ->orWhere('name', 'like', '%' . $request->search . '%')
-            ->orWhere('person', 'like', '%' . $request->search . '%')
-            ->orWhere('phone', 'like', '%' . $request->search . '%')
-            ->orWhere('email', 'like', '%' . $request->search . '%')
-            ->orWhere('address', 'like', '%' . $request->search . '%')
-            ->orWhere('ref_by', 'like', '%' . $request->search . '%')
-            ->orWhere('sold_by', 'like', '%' . $request->search . '%')
+            ->where('date', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('name', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('person', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('phone', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('email', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('address', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('ref_by', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('sold_by', 'like', '%' . $request->invoice_search . '%')
             //invoice_bills
-            ->orWhere('invoice_no', 'like', '%' . $request->search . '%')
-            ->orWhere('subtotal', 'like', '%' . $request->search . '%')
+            ->orWhere('invoice_no', 'like', '%' . $request->invoice_search . '%')
+            ->orWhere('subtotal', 'like', '%' . $request->invoice_search . '%')
             ->paginate(10);
         return view("admin.InvoiceBill.index", compact("invoice_bill"));
     }

@@ -130,6 +130,8 @@
             </table>
         </article>
 
+
+
         <div class="sig" style="display:flex; justify-content:space-between; margin-bottom:30px">
             <div class="reciver">
                 <p>...............................</p>
@@ -258,7 +260,6 @@ html {
 
 .body {
     box-sizing: border-box;
-    height: 11in;
     margin: 0 auto;
     overflow: hidden;
     padding: 0.5in;
