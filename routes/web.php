@@ -42,16 +42,20 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('admin_categories_inactive/{id}', [CategoryController::class, 'Inactive']);
     Route::get('admin_categories_active/{id}', [CategoryController::class, 'Active']);
     Route::get('category_search', [CategoryController::class, 'category_search']);
+    
     //================Admin Shop stock========================
     Route::get('admin_shop_stock', [StockController::class, 'index']);
     Route::get('admin_add_shop_stoke', [StockController::class, 'add_stoke_page']);
     Route::post('admin_store_shop_stock', [StockController::class, 'store']);
+    Route::get('addQty_stock/{id}', [StockController::class, 'addQty_stock']);
+    Route::post('addQty_stock_update', [StockController::class, 'addQty_stock_update']);
     Route::get('admin_shop_stock_seen/{id}', [StockController::class, 'admin_shop_stock_seen']);
     Route::get('admin_shop_stock_edit/{id}', [StockController::class, 'admin_shop_stock_edit']);
     Route::post('admin_update_shop_stock/{id}', [StockController::class, 'update']);
     Route::get('admin_shop_stock_delete/{id}', [StockController::class, 'Delete']);
     Route::get('shop_stock_search', [StockController::class, 'shop_stock_search']);
-    
+    Route::get('/stock_autocomplete_search', [StockController::class, 'stock_autocomplete_search_ajax']);
+
    //================Admin product search========================
     Route::get('/product-list', [SearchControll::class, 'product_list_ajax']);
     
@@ -64,6 +68,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('admin_update_godown_stock/{id}', [GodownStockController::class, 'update']);
     Route::get('admin_godown_stock_delete/{id}', [GodownStockController::class, 'Delete']);
     Route::get('godown_stock_search', [GodownStockController::class, 'godown_stock_search']);
+    Route::get('/godownstock_autocomplete_search', [GodownStockController::class, 'godownstock_autocomplete_search_ajax']);
+
     
     //================Admin Invoice stock========================
     Route::get('admin_invoice_bill', [InvoiceBillController::class, 'index']);
@@ -76,9 +82,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('admin_place_order_invoice_edit/{id}', [InvoiceBillController::class, 'admin_place_order_invoice_edit']);
     Route::post('place_order_invoice_updated/{id}', [InvoiceBillController::class, 'place_order_invoice_updated']);
     Route::get('invoice_search', [InvoiceBillController::class, 'invoice_search']);
-    Route::get('/autocomplete-search', [InvoiceBillController::class, 'search_stock_product']);
-    //Route::get('/invoice_search', [InvoiceBillController::class, 'invoice_search_ajax']);
-        
+    Route::get('/invoice_autocomplete_search', [InvoiceBillController::class, 'invoice_autocomplete_search_ajax']);
+    Route::post('date_from_to_search', [InvoiceBillController::class, 'date_from_to_search']);
+
+    
     //==================================CombinedLedger==============================
     Route::get('admin_combined_ledger', [CombinedLedgerController::class, 'index']);
     Route::post('customer_ledger_store', [CombinedLedgerController::class, 'customer_ledger_store']);
@@ -89,20 +96,28 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('customer_ledger_update', [CombinedLedgerController::class, 'customer_ledger_update']);
     Route::get('customer_ledger_delete/{id}', [CombinedLedgerController::class, 'customer_ledger_delete']);
     Route::get('customer_ledger_search', [CombinedLedgerController::class, 'customer_ledger_search']);
+    Route::get('/ledger_autocomplete_search', [CombinedLedgerController::class, 'ledger_autocomplete_search_ajax']);
 
     //================admin user=====================
     Route::get('users', [UserController::class, 'users']);
     Route::get('admins', [UserController::class, 'admins']);
+    Route::get('admin_create/{id}', [UserController::class, 'admin_create']);
+    Route::get('user_create/{id}', [UserController::class, 'user_create']);
     Route::get('usertype_delete/{id}', [UserController::class, 'Delete']);
     Route::get('usertype_edit/{id}', [UserController::class, 'edit']);
     Route::post('admin_update_user/{id}', [UserController::class, 'update']);
     Route::get('users_search', [UserController::class, 'users_search']);
     Route::get('admins_search', [UserController::class, 'admins_search']);
+    Route::get('/user_autocomplete_search', [UserController::class, 'user_autocomplete_search_ajax']);
+    Route::get('/admin_autocomplete_search', [UserController::class, 'admin_autocomplete_search_ajax']);
+
     //===================admin_contact=========================
     Route::get('admin_contact', [ContactadminController::class, 'admin_contact']);
     Route::get('contact_seen_admin/{id}', [ContactadminController::class, 'contact_seen_admin']);
     Route::get('message_seen/{id}', [ContactadminController::class, 'message_seen']);
     Route::get('contact_search', [ContactadminController::class, 'contact_search']);
+    Route::get('/contact_autocomplete_search', [ContactadminController::class, 'contact_autocomplete_search_ajax']);
+
     //contact_email_send
     Route::get('contact_email_view/{id}', [EmailController::class, 'contact_email_view']);
     Route::post('/contact_send_email/{id}', [EmailController::class, 'contact_send_email']);

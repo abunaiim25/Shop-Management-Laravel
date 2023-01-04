@@ -103,15 +103,6 @@
                                         </div>
                                     </div><!-- col-4 -->
 
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Total Cost Price: <span
-                                                    class="text-danger">*</span></label>
-                                            <input class="form-control  bg-white" style="color: black" type="text"
-                                                name="total_cost_price" placeholder="total cost price"
-                                                value="{{$stock->total_cost_price}}" required>
-                                        </div>
-                                    </div><!-- col-4 -->
 
                                     <div class="col-lg-4">
                                         <div class="form-group">
@@ -122,40 +113,10 @@
                                                 placeholder="per selling price" required>
                                         </div>
                                     </div><!-- col-4 -->
-
-
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Description <span
-                                                    class="text-danger">*</span></label></label>
-                                            <textarea required style="color:black" rows="10" name="description" required
-                                                class="form-control bg-white " id="exampleInputEmail1"
-                                                cols="5">{{$stock->description}}</textarea>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-6 mt-2">
-                                        <div class="form-group">
-                                            <p>
-                                                <label for="exampleInputEmail1">Product Image</label>
-                                            </p>
-                                            <img style="height:250px;"
-                                                src="{{ asset('img_DB/product/image_godown/' . $stock->image_godown) }}"
-                                                alt="">
-
-                                            <p>
-                                                <input class="mt-1" type="file" name="image" class="form-control"
-                                                    id="exampleInputEmail1" aria-describedby="emailHelp">
-                                            </p>
-                                        </div>
-                                    </div>
-
                                 </div><!-- row -->
 
                                 <div class="form-layout-footer">
-                                    <button class="btn btn-info mg-r-5">Update Product</button>
+                                    <button class="btn btn-info my-3">Update Product</button>
                                 </div><!-- form-layout-footer -->
                         </form>
                     </div><!-- form-layout -->

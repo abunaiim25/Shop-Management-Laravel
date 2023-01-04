@@ -91,14 +91,6 @@ Admin - Add Godown Stock
                                 </div>
                             </div><!-- col-4 -->
 
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label">Total Cost Price: <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control  bg-white" style="color: black" type="text"
-                                        name="total_cost_price" placeholder="21000" required>
-                                </div>
-                            </div><!-- col-4 -->
 
                             <div class="col-lg-4">
                                 <div class="form-group">
@@ -106,29 +98,6 @@ Admin - Add Godown Stock
                                             class="text-danger">*</span></label>
                                     <input class="form-control  bg-white" style="color: black" type="text"
                                         name="per_selling_price" placeholder="1000" required>
-                                </div>
-                            </div><!-- col-4 -->
-
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Description <span
-                                            class="text-danger">*</span></label></label>
-                                    <textarea required style="color:black" rows="10" name="description" required
-                                        class="form-control bg-white " id="exampleInputEmail1" cols="5"></textarea>
-                                </div>
-                            </div>
-
-
-                            <!-- image -->
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label">Product Image: <span
-                                            class="text-danger">*</span></label>
-
-                                    <img id="output" style="height:250px;  color:black;" alt="Image not here">
-                                    <input class="form-control" type="file" name="image_godown"
-                                        onchange="loadFile(event)" required>
                                 </div>
                             </div><!-- col-4 -->
 

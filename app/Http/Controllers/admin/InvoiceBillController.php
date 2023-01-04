@@ -23,10 +23,15 @@ class InvoiceBillController extends Controller
         $invoice_bill = DB::table('invoice_bills')
             ->join('customer_information', 'invoice_bills.id', 'customer_information.order_id') //join
             ->select("invoice_bills.*", "customer_information.name as name", "customer_information.date as date", "customer_information.phone as phone") //if same column in a table
-            ->orderBy('invoice_bills.id', 'DESC')->paginate(10);
+            ->orderBy('invoice_bills.id', 'DESC')->paginate(20);
+            
+            $subtotal = DB::table('invoice_bills')->select('subtotal')->sum('subtotal');
+            $bill_count = DB::table('invoice_bills')->select('subtotal')->count('subtotal');
+
         //dd($invoice_bill);
-        return view("admin.InvoiceBill.index", compact('invoice_bill'));
+        return view("admin.InvoiceBill.index", compact('invoice_bill', 'subtotal', 'bill_count'));
     }
+
 
     //========================PDF Seen============================
     public function seen_invoicebill($id)
@@ -101,7 +106,7 @@ class InvoiceBillController extends Controller
                 'product_qty' => $product->qty,
                 'created_at' => Carbon::now(),
             ]);
-            
+
             /*stock or outOfStock */
             $prod = ShopStock::where('product_name', $product->product_desc)->first();
             $prod->product_quantity = $prod->product_quantity - $product->qty;
@@ -123,7 +128,7 @@ class InvoiceBillController extends Controller
 
         //delete from cart
         ProductInvoice::where('user_ip', request()->ip())->delete();
-        
+
         //
         return Redirect()->to('/admin_invoice_bill')->with('status', 'Invoice/Bill added Successfully');
     }
@@ -192,14 +197,14 @@ class InvoiceBillController extends Controller
 
         return Redirect()->to('/admin_invoice_bill')->with('status', 'Invoice/Bill updated Successfully');
     }
-    
-    
+
+
     //invoice_search
     public function invoice_search(Request $request)
     {
         $invoice_bill =  DB::table('customer_information')
-        ->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id') //join
-        //customer_information
+            ->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id') //join
+            //customer_information
             ->where('date', 'like', '%' . $request->invoice_search . '%')
             ->orWhere('name', 'like', '%' . $request->invoice_search . '%')
             ->orWhere('person', 'like', '%' . $request->invoice_search . '%')
@@ -211,7 +216,64 @@ class InvoiceBillController extends Controller
             //invoice_bills
             ->orWhere('invoice_no', 'like', '%' . $request->invoice_search . '%')
             ->orWhere('subtotal', 'like', '%' . $request->invoice_search . '%')
-            ->paginate(10);
-        return view("admin.InvoiceBill.index", compact("invoice_bill"));
+            ->paginate(20);
+
+        $query = DB::table('customer_information')->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id');
+        $columns = ['date', 'name', 'person', 'phone', 'email', 'invoice_no'];
+        foreach ($columns as $column) {
+            $query->orWhere($column, $request->invoice_search);
+        }
+        $subtotal = $query->select('subtotal')->sum('subtotal');
+        $bill_count = $query->select('subtotal')->count('subtotal');
+             
+        return view("admin.InvoiceBill.index", compact("invoice_bill", 'subtotal', 'bill_count'));
     }
-}   
+
+    public function invoice_autocomplete_search_ajax()
+    {
+        $customer = CustomerInformation::get();
+        $invoice = InvoiceBill::get();
+        $data = [];
+
+        foreach ($customer as $item) {
+            $data[] = $item['name'];
+            $data[] = $item['date'];
+            $data[] = $item['person'];
+            $data[] = $item['phone'];
+            $data[] = $item['email'];
+            $data[] = $item['address'];
+            $data[] = $item['ref_by'];
+            $data[] = $item['sold_by'];
+        }
+        foreach ($invoice as $item) {
+            $data[] = $item['invoice_no'];
+            $data[] = $item['subtotal'];
+        }
+        return $data;
+    }
+    
+    
+    public function date_from_to_search(Request $request){
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+        
+         $invoice_bill =  DB::table('customer_information')
+        ->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id')
+        ->whereBetween('date', [
+            $fromDate,
+            Carbon::parse($toDate)->endOfDay(),
+        ])->paginate(20);
+        
+        $subtotal = DB::table('customer_information')
+            ->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id')
+            ->whereBetween('date', [$fromDate, Carbon::parse($toDate)->endOfDay(),])
+        ->select('subtotal')->sum('subtotal');
+
+        $bill_count = DB::table('customer_information')
+        ->join('invoice_bills', 'customer_information.order_id', 'invoice_bills.id')
+        ->whereBetween('date', [$fromDate, Carbon::parse($toDate)->endOfDay(),])
+        ->select('subtotal')->count('subtotal');
+        
+        return view('admin.InvoiceBill.index', compact('invoice_bill','subtotal', 'bill_count'));
+    }
+}

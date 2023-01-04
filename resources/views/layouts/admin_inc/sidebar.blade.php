@@ -6,10 +6,8 @@ $front = App\Models\FrontControl::first();
 <!-- partial:partials/_sidebar.html -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="#"><img src="{{ asset('img_DB/front/logo/' . $front->logo_big) }}"
-                alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="#"><img
-                src="{{ asset('img_DB/front/logo/' . $front->logo_small) }}" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="#"><img src="{{ asset('img_DB/front/logo/' . $front->logo_big) }}" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="#"><img src="{{ asset('img_DB/front/logo/' . $front->logo_small) }}" alt="logo" /></a>
     </div>
     <ul class="nav">
 
@@ -38,7 +36,7 @@ $front = App\Models\FrontControl::first();
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{url('admin_invoice_bill')}}">
                 <span class="menu-icon">
-                    <i class="fa-solid fa-shop"></i>
+                    <i class="fa-solid fa-money-bill"></i>
                 </span>
                 <span class="menu-title">Invoice/Bill</span>
             </a>
@@ -47,25 +45,16 @@ $front = App\Models\FrontControl::first();
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{url('admin_combined_ledger')}}">
                 <span class="menu-icon">
-                    <i class="fa-solid fa-shop"></i>
+                    <i class="fa-solid fa-dollar-sign"></i>
                 </span>
-                <span class="menu-title">Combined Ledger</span>
-            </a>
-        </li>
-
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('admin_contact')}}">
-                <span class="menu-icon">
-                    <i class="fa-solid fa-comments"></i>
-                </span>
-                <span class="menu-title">Contacts</span>
+                <span class="menu-title">Transaction</span>
             </a>
         </li>
 
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{url('admin_category')}}">
                 <span class="menu-icon">
-                    <i class="fa-solid fa-comments"></i>
+                    <i class="fa-solid fa-list"></i>
                 </span>
                 <span class="menu-title">Product Category</span>
             </a>
@@ -90,6 +79,15 @@ $front = App\Models\FrontControl::first();
         </li>
 
         <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('admin_contact')}}">
+                <span class="menu-icon">
+                    <i class="fa-solid fa-comments"></i>
+                </span>
+                <span class="menu-title">Contacts</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
             <a class="nav-link" href="{{url('admin_front_control')}}">
                 <span class="menu-icon">
                     <i class="fa-solid fa-palette"></i>
@@ -109,8 +107,7 @@ $front = App\Models\FrontControl::first();
 
 
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic5" aria-expanded="false"
-                aria-controls="ui-basic5">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
                 <span class="menu-icon">
                     <i class="fa-solid fa-user"></i>
                 </span>
@@ -130,8 +127,7 @@ $front = App\Models\FrontControl::first();
                     </li>
 
                     <li class="nav-item menu-items">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                             <span class="menu-icon">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             </span>

@@ -1,33 +1,20 @@
 @extends('layouts.admin_layout')
 
 @section('title')
-Admin - Combined Ledger
+Admin - Transaction
 @endsection
 
 @section('search')
 {{--sesrch--}}
-<ul class="navbar-nav w-100">
-    <li class="nav-item w-100">
-
-        <form action="{{url('customer_ledger_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
-            {{csrf_field()}}
-            <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search customer">
-        </form>
-
-    </li>
-</ul>
 @endsection
 
 
+
 @section('admin_content')
-
-
 <div class="sl-mainpanel m-4">
     <nav class="breadcrumb sl-breadcrumb">
-        <p>Admin Panel / Combined Ledger </p>
+        <p>Admin Panel / Transaction </p>
     </nav>
-
-
 
     <div class="sl-pagebody">
         <div class="row row-sm">
@@ -74,15 +61,30 @@ Admin - Combined Ledger
                     <div style="display: flex; justify-content: space-between;" class="mb-2">
                         <h6 class="card-body-title">Combined Ledger List</h6>
 
-                        <!-Modal-->
 
-                            <div class="text-center">
-                                <a href="" class="btn btn-info btn-rounded" data-toggle="modal"
-                                    data-target="#modalLoginForm">+
-                                    Create Ledger
-                                </a>
+                        <div class="row">
+                            <div class="my-auto">
+                                <form action="{{url('customer_ledger_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
+                                    {{csrf_field()}}
+
+                                    <div class="input-group ">
+                                        <input type="search" name="ledger_search" id="customer_ledger_search" class=" form-control bg-white text-dark " placeholder="search customer">
+                                        <button type="submit" class="btn" title="Search">
+                                            <i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </form>
                             </div>
+                            <div class="my-auto">
+                                <!-Modal-->
+                                    <div class="text-center">
+                                        <a href="" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#modalLoginForm">+
+                                             Ledger
+                                        </a>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
+
 
                     <div class="table-wrapper" style="overflow: auto">
                         <div class="product">
@@ -114,19 +116,14 @@ Admin - Combined Ledger
                                         <td>{{ $item->latest_balance ?? 0 }} TK
                                         </td>
                                         <td>
-                                            <a href=" {{ url('admin_seen_ledger/'. $item->id) }}"
-                                                class="btn btn-warning btn-sm">
+                                            <a href=" {{ url('admin_seen_ledger/'. $item->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="fas fa-eye"></i> </a>
 
-                                            <button type="button" class="btn btn-info btn-sm editbtn"
-                                                value=" {{$item->id}}">
+                                            <button type="button" class="btn btn-info btn-sm editbtn" value=" {{$item->id}}">
                                                 <i class="fa fa-pencil"></i>
                                             </button>
 
-                                            <a href="{{ url('customer_ledger_delete/'. $item->id) }}"
-                                                class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Are You Sure To Delete?')"><i
-                                                    class="fa fa-trash"></i> </a>
+                                            <a href="{{ url('customer_ledger_delete/'. $item->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa fa-trash"></i> </a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -147,8 +144,7 @@ Admin - Combined Ledger
 <!--Create Modal-->
 <form action="customer_ledger_store" method="POST">
     @csrf
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content  bg-white">
                 <div class="text-center my-4">
@@ -164,8 +160,7 @@ Admin - Combined Ledger
                                 <label class="form-control-label text-dark">
                                     Date
                                 </label>
-                                <input class="form-control bg-white" style="color: black" type="date" name="date"
-                                    required>
+                                <input class="form-control bg-white" style="color: black" type="date" name="date" required>
                             </div>
                         </div>
 
@@ -173,8 +168,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">Customer Name:
                                 </label>
-                                <input class="form-control bg-white" style="color: black" type="text" name="name"
-                                    placeholder="Naiim" required>
+                                <input class="form-control bg-white" style="color: black" type="text" name="name" placeholder="Naiim" required>
                             </div>
                         </div>
 
@@ -183,8 +177,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">Customer
                                     Number</label>
-                                <input class="form-control bg-white" style="color: black" type="text" name="phone"
-                                    placeholder="01xxxxxxxxx" required>
+                                <input class="form-control bg-white" style="color: black" type="text" name="phone" placeholder="01xxxxxxxxx" required>
                             </div>
                         </div>
 
@@ -192,8 +185,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">Customer Email
                                 </label>
-                                <input class="form-control bg-white" style="color: black" type="text" name="email"
-                                    placeholder="email@gmail.com" required>
+                                <input class="form-control bg-white" style="color: black" type="text" name="email" placeholder="email@gmail.com" required>
                             </div>
                         </div>
 
@@ -201,8 +193,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">
                                     Customer Address</label>
-                                <input class="form-control bg-white" style="color: black" type="text" name="address"
-                                    placeholder="Dhaka, Bangladesh" required>
+                                <input class="form-control bg-white" style="color: black" type="text" name="address" placeholder="Dhaka, Bangladesh" required>
                             </div>
                         </div>
 
@@ -211,8 +202,7 @@ Admin - Combined Ledger
                                 <label class="form-control-label text-dark">
                                     Openning Amount
                                 </label>
-                                <input class="form-control bg-white" style="color: black" type="text" name="balance"
-                                    placeholder="10000" required>
+                                <input class="form-control bg-white" style="color: black" type="text" name="balance" placeholder="10000" required>
                             </div>
                         </div>
 
@@ -234,8 +224,7 @@ Admin - Combined Ledger
     @csrf
     @method('PUT')
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content  bg-white">
                 <div class="text-center my-4">
@@ -252,8 +241,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">Customer Name:
                                 </label>
-                                <input class="form-control bg-white" id="name" style="color: black" type="text"
-                                    name="name" placeholder="Naiim" required>
+                                <input class="form-control bg-white" id="name" style="color: black" type="text" name="name" placeholder="Naiim" required>
                             </div>
                         </div>
 
@@ -262,8 +250,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">Customer
                                     Number</label>
-                                <input class="form-control bg-white" id="phone" style="color: black" type="text"
-                                    name="phone" placeholder="01xxxxxxxxx" required>
+                                <input class="form-control bg-white" id="phone" style="color: black" type="text" name="phone" placeholder="01xxxxxxxxx" required>
                             </div>
                         </div>
 
@@ -271,8 +258,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">Customer Email
                                 </label>
-                                <input class="form-control bg-white" id="email" style="color: black" type="text"
-                                    name="email" placeholder="email@gmail.com" required>
+                                <input class="form-control bg-white" id="email" style="color: black" type="text" name="email" placeholder="email@gmail.com" required>
                             </div>
                         </div>
 
@@ -280,8 +266,7 @@ Admin - Combined Ledger
                             <div class="form-group">
                                 <label class="form-control-label text-dark">
                                     Customer Address</label>
-                                <input class="form-control bg-white" id="address" style="color: black" type="text"
-                                    name="address" placeholder="Dhaka, Bangladesh" required>
+                                <input class="form-control bg-white" id="address" style="color: black" type="text" name="address" placeholder="Dhaka, Bangladesh" required>
                             </div>
                         </div>
                     </div>
@@ -300,28 +285,27 @@ Admin - Combined Ledger
 
 
 <!--Edit Modal-->
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
-$(document).ready(function() {
-    $(document).on('click', '.editbtn', function() {
-        var customerLedger_id = $(this).val();
-        //alert(response);
-        $('#editModal').modal('show');
+    $(document).ready(function() {
+        $(document).on('click', '.editbtn', function() {
+            var customerLedger_id = $(this).val();
+            //alert(response);
+            $('#editModal').modal('show');
 
-        $.ajax({
-            type: "GET",
-            url: "/customer_ledger_edit/" + customerLedger_id,
-            success: function(response) {
-                console.log(response.customerLedger_id);
-                $('#name').val(response.customer.name);
-                $('#phone').val(response.customer.phone);
-                $('#email').val(response.customer.email);
-                $('#address').val(response.customer.address);
-                $('#customerLedger_id').val(customerLedger_id);
-            }
+            $.ajax({
+                type: "GET",
+                url: "/customer_ledger_edit/" + customerLedger_id,
+                success: function(response) {
+                    console.log(response.customerLedger_id);
+                    $('#name').val(response.customer.name);
+                    $('#phone').val(response.customer.phone);
+                    $('#email').val(response.customer.email);
+                    $('#address').val(response.customer.address);
+                    $('#customerLedger_id').val(customerLedger_id);
+                }
+            });
         });
     });
-});
 </script>
 @endsection

@@ -16,10 +16,9 @@ class ContactController extends Controller
           
           $data->name= $request->name;
           $data->email= $request->email;
-          $data->date= $request->date;
           $data->phone= $request->phone;
           $data->message= $request->message;
-          $data->status= 'In Progress';
+          $data->status= 'Progress';
           if(Auth::id())
           {
               $data->user_id= Auth::user()->id;

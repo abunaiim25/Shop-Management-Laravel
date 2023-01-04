@@ -19,11 +19,9 @@ class CreateShopStocksTable extends Migration
             $table->integer('category_id')->nullable();
             $table->string('brand')->nullable();
             $table->string('product_quantity')->nullable();
-            $table->longText('description')->nullable(); 
+            $table->string('product_quantity_total')->nullable();
             $table->string('per_cost_price')->nullable();
-            $table->string('total_cost_price')->nullable();
             $table->string('per_selling_price')->nullable();
-            $table->string('image')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

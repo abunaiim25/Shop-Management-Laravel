@@ -6,16 +6,6 @@ Admin - Godown Stock
 
 @section('search')
 {{--sesrch--}}
-<ul class="navbar-nav w-100">
-    <li class="nav-item w-100">
-
-        <form action="{{url('godown_stock_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
-            {{csrf_field()}}
-            <input type="text" name="search" class="form-control bg-white text-dark" placeholder="search godown stock">
-        </form>
-
-    </li>
-</ul>
 @endsection
 
 
@@ -71,8 +61,24 @@ Admin - Godown Stock
 
                     <div style="display: flex; justify-content: space-between;" class="mb-2">
                         <h6 class="card-body-title">Godown Stoke Product List</h6>
-                        <a href="{{url('/admin_add_godown_stoke')}}" class=" btn btn-info btn-rounded">+ Add Godown
-                            Stock</a>
+
+                        <div class="row">
+                            <div class="my-auto">
+                                <form action="{{url('godown_stock_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
+                                    {{csrf_field()}}
+
+                                    <div class="input-group ">
+                                        <input type="search" name="search" id="godown_stock_search" class=" form-control bg-white text-dark " placeholder="search product">
+                                        <button type="submit" class="btn" title="Search">
+                                            <i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="my-auto">
+                                <a href="{{url('/admin_add_godown_stoke')}}" class=" btn btn-info btn-rounded">+ Stock</a>
+
+                            </div>
+                        </div>
                     </div>
                     @if ($stock->count() > 0)
                     <div class="table-wrapper" style="overflow: auto">
@@ -82,7 +88,6 @@ Admin - Godown Stock
                                     <tr>
                                         <th>Sl</th>
                                         <th>Date & Time</th>
-                                        <th>Product Image</th>
                                         <th>Product Name</th>
                                         <th>Category</th>
                                         <th>Brand</th>
@@ -97,12 +102,7 @@ Admin - Godown Stock
                                     @foreach ($stock as $row)
                                     <tr>
                                         <td> <?php $i++; ?> {{ $i }}</td>
-                                        <td> {{$row->updated_at}}</td>
-                                        <td>
-                                            <img style="width: 100px; height:100px;"
-                                                src="{{ asset('img_DB/product/image_godown/' . $row->image_godown) }}"
-                                                alt="">
-                                        </td>
+                                        <td> {{$row->updated_at ?? $row->created_at}}</td>
                                         <td>{{ $row->product_name }}</td>
                                         <td>{{ $row->category_name }}</td>
                                         <td>{{ $row->brand }}</td>
@@ -117,18 +117,14 @@ Admin - Godown Stock
                                         </td>
 
                                         <td>
-                                            <a href="{{ url('admin_godown_stock_seen/'. $row->id) }}"
-                                                class="btn btn-warning btn-sm">
+                                            <button type="button" class="btn btn-warning btn-sm seenBtn" value="{{$row->id}}">
                                                 <i class="fas fa-eye"></i> </a>
+                                            </button>
 
-                                            <a href="{{ url('admin_godown_stock_edit/'. $row->id ) }}"
-                                                class="btn btn-sm btn-info">
+                                            <a href="{{ url('admin_godown_stock_edit/'. $row->id ) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-pencil"></i> </a>
 
-                                            <a href="{{ url('admin_godown_stock_delete/'. $row->id) }}"
-                                                class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Are You Sure To Delete?')"><i
-                                                    class="fa fa-trash"></i> </a>
+                                            <a href="{{ url('admin_godown_stock_delete/'. $row->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa fa-trash"></i> </a>
                                         </td>
                                     </tr>
 
@@ -142,10 +138,88 @@ Admin - Godown Stock
                     </div><!-- table-wrapper -->
                 </div><!-- card -->
             </div>
-
         </div>
-
     </div>
+
+
+    <!--seen Modal-->
+    <div class="modal fade" id="seenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="
+            true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content  bg-white">
+                <div class="text-center my-4">
+                    <h4 class="modal-title w-100 font-weight-bold text-dark">Godown Product Details
+                    </h4>
+                </div>
+
+                <div class="modal-body mx-3">
+                    <div class="row">
+
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-control-label text-dark">Product Name:
+                                </label>
+                                <input class="form-control bg-white" id="product_name" style="color: black" type="text" name="product_name" readonly>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-control-label text-dark">Brand:
+                                </label>
+                                <input class="form-control bg-white" id="brand" style="color: black" type="text" name="brand" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-control-label text-dark">Product Quantity:
+                                </label>
+                                <input class="form-control bg-white" id="product_quantity" style="color: black" type="text" name="product_quantity" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-control-label text-dark">
+                                    Per Cost Price:</label>
+                                <input class="form-control bg-white" id="per_cost_price" style="color: black" type="text" name="per_cost_price" readonly>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-control-label text-dark">Per Selling Price:
+                                </label>
+                                <input class="form-control bg-white" id="per_selling_price" style="color: black" type="text" name="per_selling_price" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-control-label text-dark">Created Time:
+                                </label>
+                                <input class="form-control bg-white" id="created_at" style="color: black" type="text" name="created_at" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="form-control-label text-dark">
+                                    Updated Time:</label>
+                                <input class="form-control bg-white" id="updated_at" style="color: black" type="text" name="updated_at" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <div class="d-flex mt-5">
@@ -153,4 +227,32 @@ Admin - Godown Stock
     </div>
 </div>
 
+
+<!--Edit Modal-->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.seenBtn', function() {
+            var id = $(this).val();
+            //alert(response);
+            $('#seenModal').modal('show');
+
+            $.ajax({
+                type: "GET",
+                url: "/admin_godown_stock_seen/" + id,
+                success: function(response) {
+                    console.log(response.id);
+                    $('#product_name').val(response.stock.product_name);
+                    $('#brand').val(response.stock.brand);
+                    $('#product_quantity').val(response.stock.product_quantity + " In Stock");
+                    $('#per_cost_price').val(response.stock.per_cost_price + " TK");
+                    $('#total_cost_price').val(response.stock.total_cost_price + " TK");
+                    $('#per_selling_price').val(response.stock.per_selling_price + " TK");
+                    $('#created_at').val(response.stock.created_at);
+                    $('#updated_at').val(response.stock.updated_at);
+                }
+            });
+        });
+    });
+</script>
 @endsection

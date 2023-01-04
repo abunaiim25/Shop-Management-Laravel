@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index()
     {
         //$categories = Category::latest()->simplePaginate(2);
-        $categories = Category::latest()->paginate(10);
+        $categories = Category::latest()->paginate(20);
        // $categories = Category::latest()->paginate(4)->withQueryString();
         return view('admin.category.index',compact('categories'));
     }
@@ -76,7 +76,7 @@ class CategoryController extends Controller
      {
          $categories = Category::
          where('category_name','like','%'.$request->search.'%')
-         ->paginate(10);
+         ->paginate(20);
          return view('admin.category.index',compact('categories'));
      }
 }

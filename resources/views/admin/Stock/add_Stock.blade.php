@@ -34,10 +34,8 @@ Admin - Add Shop Stock
 
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="form-control-label">Product Name: <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control bg-white " style="color: black" type="text"
-                                        name="product_name" placeholder="Router22" required>
+                                    <label class="form-control-label">Product Name: <span class="text-danger">*</span></label>
+                                    <input class="form-control bg-white " style="color: black" type="text" name="product_name" placeholder="Router22" required>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -46,8 +44,7 @@ Admin - Add Shop Stock
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="form-group mg-b-10-force">
-                                            <select required class="form-control select2  bg-white" style="color: black"
-                                                name="category_id" data-placeholder="Choose Category">
+                                            <select required class="form-control select2  bg-white" style="color: black" name="category_id" data-placeholder="Choose Category">
                                                 <option label="Choose category"></option>
                                                 @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->category_name }}
@@ -57,8 +54,7 @@ Admin - Add Shop Stock
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <a class="btn btn-info btn-rounded" data-toggle="modal"
-                                            data-target="#modalLoginForm">+
+                                        <a class="btn btn-info btn-rounded" data-toggle="modal" data-target="#modalLoginForm">+
                                         </a>
                                     </div>
                                 </div>
@@ -67,68 +63,30 @@ Admin - Add Shop Stock
                             <div class="col-lg-4">
                                 <div class="form-group mg-b-10-force">
                                     <label class="form-control-label">Brand: <span class="text-danger">*</span></label>
-                                    <input class="form-control bg-white " style="color: black" type="text" name="brand"
-                                        placeholder="TP-Link" required>
+                                    <input class="form-control bg-white " style="color: black" type="text" name="brand" placeholder="TP-Link" required>
                                 </div>
                             </div><!-- col-4 -->
 
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="form-control-label">Quantity: <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control  bg-white" style="color: black" type="number"
-                                        name="product_quantity" placeholder="30" required>
+                                    <label class="form-control-label">Quantity: <span class="text-danger">*</span></label>
+                                    <input class="form-control  bg-white" style="color: black" type="number" name="product_quantity" placeholder="30" required>
                                 </div>
                             </div><!-- col-4 -->
 
 
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="form-control-label">Per Cost Price: <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control  bg-white" style="color: black" type="text"
-                                        name="per_cost_price" placeholder="700" required>
-                                </div>
-                            </div><!-- col-4 -->
-
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label">Total Cost Price: <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control  bg-white" style="color: black" type="text"
-                                        name="total_cost_price" placeholder="21000" required>
-                                </div>
-                            </div><!-- col-4 -->
-
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label">Per Selling Price: <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control  bg-white" style="color: black" type="text"
-                                        name="per_selling_price" placeholder="1000" required>
+                                    <label class="form-control-label">Per Purchase Price: <span class="text-danger">*</span></label>
+                                    <input class="form-control  bg-white" style="color: black" type="text" name="per_cost_price" placeholder="700" required>
                                 </div>
                             </div><!-- col-4 -->
 
 
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Description <span
-                                            class="text-danger">*</span></label></label>
-                                    <textarea required style="color:black" rows="10" name="description" required
-                                        class="form-control bg-white " id="exampleInputEmail1" cols="5"></textarea>
-                                </div>
-                            </div>
-
-
-                            <!-- image -->
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="form-control-label">Product Image: <span
-                                            class="text-danger">*</span></label>
-
-                                    <img id="output" style="height:250px;  color:black;" alt="Image not here">
-                                    <input class="form-control" type="file" name="image" onchange="loadFile(event)"
-                                        required>
+                                    <label class="form-control-label">Per Selling Price: <span class="text-danger">*</span></label>
+                                    <input class="form-control  bg-white" style="color: black" type="text" name="per_selling_price" placeholder="1000" required>
                                 </div>
                             </div><!-- col-4 -->
 
@@ -145,8 +103,7 @@ Admin - Add Shop Stock
 
     <form action="{{ url('admin_store_category') }}" method="POST">
         @csrf
-        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content  bg-white">
                     <div class="text-center my-4">
@@ -159,8 +116,7 @@ Admin - Add Shop Stock
 
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div class="form-group">
-                                    <input class="form-control bg-white" style="color: black" type="text"
-                                        name="category_name" placeholder="category" required>
+                                    <input class="form-control bg-white" style="color: black" type="text" name="category_name" placeholder="category" required>
                                 </div>
                             </div>
 

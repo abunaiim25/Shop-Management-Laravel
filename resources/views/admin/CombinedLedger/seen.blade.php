@@ -21,7 +21,7 @@
 
     <div style="display: flex; justify-content:center;" class=" mt-4">
         <div style="display: flex; justify-content: space-between; width:8.5in;" class="mb-2">
-            <h6 class="card-body-title text-white">Combined Ledger / {{$customer->name}}</h6>
+            <h6 class="card-body-title text-white">Transaction / {{$customer->name}}</h6>
 
             <div class="div">
                 <button type="button" class="btn btn-success btn-sm " data-bs-toggle="modal"
@@ -104,7 +104,7 @@
                             <td>{{$item->referance_no}}</td>
                             <td>{{$item->debit}}</td>
                             <td>{{$item->credit}}</td>
-                            <td>{{$item->balance}}</td>
+                            <td class="fw-bold">{{$item->balance}}</tdc>
                         </tr>
                         @endforeach
 
@@ -116,10 +116,10 @@
                                 <hr>Total:
                             </td>
                             <td class="fw-bold">
-                                <hr>{{$debit}} (D)
+                                <hr>[ {{$debit}} (D)
                             </td>
                             <td class="fw-bold">
-                                <hr>{{$credit}} (C)
+                                <hr>{{$credit}} (C) ]
                             </td>
                             <td></td>
                         </tr>

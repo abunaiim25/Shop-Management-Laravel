@@ -30,7 +30,7 @@ Admin - Frontend Design
                     </div>
 
                     <div class="row p-3">
-                        <div class="col-lg-6 col-lg-6 p-3">
+                        <div class="col-lg-4 col-md-6 p-3">
                             <label for="" class="text-black"><strong> Simple Logo:</strong></label>
                             <br>
                             <img style="height: 60px" src="{{ asset('img_DB/front/logo/' . $front->logo_big) }}" alt="">
@@ -38,7 +38,7 @@ Admin - Frontend Design
                                 name="logo_big">
                         </div>
 
-                        <div class="col-lg-6 col-lg-6 p-3">
+                        <div class="col-lg-4 col-md-6 p-3">
                             <label for="" class="text-black"><strong> Small Logo:</strong></label>
                             <br>
                             <img style="height: 60px" src="{{ asset('img_DB/front/logo/' . $front->logo_small) }}"
