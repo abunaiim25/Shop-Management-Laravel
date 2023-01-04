@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body class="">
     <div class="container-scroller">
 
         @include('layouts.admin_inc.sidebar')

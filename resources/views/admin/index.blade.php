@@ -293,6 +293,7 @@ Admin - Dashboard
         </div>
 
         <!-------------------------------Chart------------------------------>
+        <!--
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
             google.charts.load('current', {
@@ -336,6 +337,7 @@ Admin - Dashboard
         </script>
 
         <div id="piechart" style="height: 500px;"></div>
+        -->
     </div>
 </div>
 

@@ -19,7 +19,7 @@ Admin - Invoice
 
 
 
-    <div class="content">
+    <div class="content ">
         <div class="container text-left">
             <div class="row justify-content-center">
                 <form action="{{ url('date_from_to_search') }}" method="POST" class="row">
