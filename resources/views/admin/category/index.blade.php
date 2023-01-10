@@ -68,7 +68,7 @@ Admin - Product Category
                             <tbody>
 
 
-                                <?php $i = $categories->perPage()*($categories->currentPage()-1) ?>
+                                <?php $i = $categories->perPage() * ($categories->currentPage() - 1) ?>
 
                                 @foreach ($categories as $category)
                                 <tr>
@@ -82,19 +82,13 @@ Admin - Product Category
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ url('admin_categories_edit/' . $category->id) }}"
-                                            class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{ url('admin_categories_delete/' . $category->id) }}"
-                                            class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Are You Sure To Delete?')"><i
-                                                class="fa fa-trash"></i></a>
+                                        <a href="{{ url('admin_categories_edit/' . $category->id) }}" class="btn btn-sm btn-info"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{ url('admin_categories_delete/' . $category->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa fa-trash"></i></a>
 
                                         @if ($category->status == 1)
-                                        <a href="{{ url('admin_categories_inactive/' . $category->id) }}"
-                                            class="btn btn-sm btn-danger"><i class="fa fa-arrow-down"></i></a>
+                                        <a href="{{ url('admin_categories_inactive/' . $category->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-arrow-down"></i></a>
                                         @else
-                                        <a href="{{ url('admin_categories_active/' . $category->id) }}"
-                                            class="btn btn-sm btn-success"><i class="fa fa-arrow-up"></i></a>
+                                        <a href="{{ url('admin_categories_active/' . $category->id) }}" class="btn btn-sm btn-success"><i class="fa fa-arrow-up"></i></a>
                                         @endif
 
                                     </td>
@@ -132,8 +126,7 @@ Admin - Product Category
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Add Category</label>
                                 <input style="color: black" type="text" name="category_name" class="form-control bg-white
-                           @error('category_name') is-invalid @enderror" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Router">
+                           @error('category_name') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Router">
 
                                 @error('category_name')
                                 <span class="text-danger">{{ $message }}</span>

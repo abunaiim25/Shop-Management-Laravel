@@ -23,10 +23,6 @@ class CreateFrontControlsTable extends Migration
             $table->string('home_bg_txt1')->nullable();
             $table->string('home_bg_txt2')->nullable();
             $table->string('home_bg_txt3')->nullable();
-            
-            $table->string('about_banner_img')->nullable();
-
-            $table->string('contact_banner_img')->nullable();
 
             $table->text('footer_text')->nullable();
             $table->string('footer_contact_address')->nullable();

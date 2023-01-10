@@ -41,6 +41,7 @@
             <div class="main-panel " style="background: #1e273b">
 
                 @yield('admin_content')
+                
                 {{-- @include('layouts.admin_inc.footer') --}}
             </div>
         </div>

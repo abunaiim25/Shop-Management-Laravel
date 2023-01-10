@@ -63,8 +63,8 @@ Admin - Contact
                     <thead>
                         <tr>
                             <th>Sl</th>
-                            <th>Date & Time</th>
-                            <th>Customer Name</th>
+                            <th>Date & Time</th>Customer
+                            <th> Name</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Message</th>
